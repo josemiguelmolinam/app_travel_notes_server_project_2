@@ -22,35 +22,40 @@ Implementar una API que permita publicar notas privadas de texto y categorizarla
 - userId
 - titulo
 - text
-- categoria
-- privacidad(privado/publico)-opcional
+- categoriaID
+- publica(privado/publico- boolean)-opcional
+- createdAt
+- imagen-opcional
+
+- Categoria:
+- id
+- nombre
 - createdAt
 
-##Endpoints##
+  ## Endpoints
 
-### Usuario anónimo:
+### Usuarios:
 
-- POST [/users/login] - Permite logear un usuario.
 - POST [/users/register] - Registro de un nuevo usuario.
-
-### Usuarios registrados:
-
-- POST [/users] - Registro de usuario.
-- POST [/users/login] - Login de usuario (devuelve token).
+- POST [/users/login] - Permite logear un usuario.
 - GET [/users] - Devuelve información del usuario del token.
-- PUT [/users] - Editar el nombre de usuario o contraseña.
-- PUT [/users/avatar] - Editar el avatar.
+- PUT [/users/avatar] - Editar el avatar.(?)
 
 ### Notas:
 
 - GET [/notes] - Obtiene el listado de notas del usuario.
 - GET [/notes/:noteId] - Obtiene información de una nota específica.
-- POST [/notes/new] - Crea una nueva nota.
-- PUT [/notes/:noteId/edit] - Modifica una nota existente.
+- POST [/notes] - Crea una nueva nota. permitir agregar img
+- PUT [/notes/:noteId] - Modifica una nota existente.
 
-### Opcional:
+### Opcional notas:
 
 - PUT [/notes/:noteId/public] - Modifica la privacidad de la nota.
 - DELETE [/notes/:noteId/delete] - Elimina una nota.
-- PUT [/notes/:noteId/edit] - Modifica una nota existente/borrar.
-- POST [/notes/:noteId/image] - Asociar imagen a una nota.
+
+### Opcional categorias:
+
+- POST [/categories] - Crea una nueva categoria
+- PUT [/categories/:categoryId] - edita categoria existente
+- DELETE [/categories/:categoryId] - elimina categoria existente
+- GET [/categories] - devuelve todas las categorias
