@@ -6,7 +6,7 @@ Implementar una API que permita publicar notas privadas de texto y categorizarla
 
 ## Entidades
 
-- User:
+- ### User:
 
 - id
 - email
@@ -16,7 +16,7 @@ Implementar una API que permita publicar notas privadas de texto y categorizarla
 - createdAt
 - modifiedAt
 
-- Nota:
+- ### Nota:
 
 - id
 - userId
@@ -27,7 +27,7 @@ Implementar una API que permita publicar notas privadas de texto y categorizarla
 - createdAt
 - imagen-opcional
 
-- Categoria:
+- ### Categoria:
 - id
 - nombre
 - createdAt
