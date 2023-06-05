@@ -14,6 +14,11 @@ app.use((req, res, next) => {
 //Middleware que muestra informacion sobre la peticion entrante.
 app.use(morgan("dev"));
 
+//middleware de usuarios
+
+const { newUser } = require ('./controllers/users');
+//registro de usuario
+app.post('/users', newUser)
 //Middleware de error
 app.use((err, req, res, next) => {
   console.error(err);
@@ -32,5 +37,6 @@ app.use((req, res) => {
   });
 });
 
-
-// Ponemos el servidor a escuchar peticiones en un puerto dado.
+app.listen(process.env.PORT, () => {
+  console.log(`Server listenig at http://localhost:${process.env.PORT}`);
+});
