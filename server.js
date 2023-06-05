@@ -1,9 +1,9 @@
-require("dotenv").config();
+require('dotenv').config();
 
-const { log } = require("console");
-const exp = require("constants");
-const express = require("express");
-const morgan = require("morgan");
+const { log } = require('console');
+const exp = require('constants');
+const express = require('express');
+const morgan = require('morgan');
 
 const app = express();
 
@@ -15,11 +15,20 @@ app.use((req, res, next) => {
 });
 
 //Middleware que muestra informacion sobre la peticion entrante.
-app.use(morgan("dev"));
+app.use(morgan('dev'));
 
 //Middleware de usuarios
 
-const { newUser } = require("./controllers/users");
+const authUser = require('./middlewares/authUser');
+const userExists = require('./middlewares/userExists');
+
+const {
+  newUser,
+  validateUser,
+  loginUser,
+  getUser,
+  getOwnUser,
+} = require('./controllers/users');
 
 //Registro de un usuario
 app.post('/users', newUser);
@@ -29,16 +38,35 @@ app.use((err, req, res, next) => {
   console.error(err);
 
   res.status(err.httpStatus || 500).send({
-    status: "error",
+    status: 'error',
     message: err.message,
   });
 
-//Ruta no encontrada
+  // Registro de usuario
+  app.post('/users', newUser);
+
+  // Login de usuario.
+  app.post('/users/login', loginUser);
+
+  // Obtener información del perfil de un usuario.
+  app.get('/users/:userId', getUser);
+
+  // Middleware de error.
+  app.use((err, req, res, next) => {
+    console.error(err);
+
+    res.status(err.httpStatus || 500).send({
+      status: 'error',
+      message: err.message,
+    });
+  });
+
+  //Ruta no encontrada
 });
 app.use((req, res) => {
   res.status(404).send({
-    status: "error",
-    message: "Ruta no encontrada",
+    status: 'error',
+    message: 'Ruta no encontrada',
   });
 });
 
