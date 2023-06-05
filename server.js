@@ -1,5 +1,6 @@
 require("dotenv").config();
 
+const { log } = require("console");
 const exp = require("constants");
 const express = require("express");
 const morgan = require("morgan");
@@ -37,6 +38,5 @@ app.use((req, res) => {
   });
 });
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server listenig at http://localhost:${process.env.PORT}`);
-});
+
+// Ponemos el servidor a escuchar peticiones en un puerto dado.
