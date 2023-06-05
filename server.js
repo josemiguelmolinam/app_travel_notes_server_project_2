@@ -10,16 +10,20 @@ const app = express();
 app.use(express.json());
 
 app.use((req, res, next) => {
-  console.log("Se ha ejecutado la petición");
+  console.log(`http://localhost:${process.env.PORT}/${req.path}`);
+  next();
 });
+
 //Middleware que muestra informacion sobre la peticion entrante.
 app.use(morgan("dev"));
 
-//middleware de usuarios
+//Middleware de usuarios
 
-const { newUser } = require ('./controllers/users');
-//registro de usuario
-app.post('/users', newUser)
+const { newUser } = require("./controllers/users");
+
+//Registro de un usuario
+app.post('/users', newUser);
+
 //Middleware de error
 app.use((err, req, res, next) => {
   console.error(err);
@@ -29,7 +33,7 @@ app.use((err, req, res, next) => {
     message: err.message,
   });
 
-  //Ruta no encontrada
+//Ruta no encontrada
 });
 app.use((req, res) => {
   res.status(404).send({
@@ -38,5 +42,6 @@ app.use((req, res) => {
   });
 });
 
-
-// Ponemos el servidor a escuchar peticiones en un puerto dado.
+app.listen(process.env.PORT, () => {
+  console.log(`Server listening at http://localhost:${process.env.PORT}`);
+});

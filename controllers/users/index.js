@@ -1,5 +1,5 @@
-const newUser = require('./newUser');
+const newUser = require("./newUser");
 
-module.exports={
-    newUser,
+module.exports = {
+  newUser,
 };
