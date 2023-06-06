@@ -9,7 +9,7 @@ const insertUserQuery = async (email, username, password) => {
     connection = await getDB();
 
     let [users] = await connection.query(
-      `SELECT id FROM users WHERE email =?`,
+      `SELECT id FROM users WHERE email = ?`,
       [email]
     );
 
@@ -17,7 +17,7 @@ const insertUserQuery = async (email, username, password) => {
       generateError("Ya existe un usuario con este email", 403);
     }
 
-    [users] = await connection.query(`SELECT id FROM users WHERE username =?`, [
+    [users] = await connection.query(`SELECT id FROM users WHERE username = ?`, [
       username,
     ]);
     if (users.length > 0) {

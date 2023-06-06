@@ -6,16 +6,13 @@ const selectUserByEmailQuery = async (email) => {
   try {
     connection = await getDB();
 
-    
     const [users] = await connection.query(
-      `SELECT id, password, FROM users WHERE email = ?`, // Dudas con este codigo
+      `SELECT id, password  FROM users WHERE email = ?`, // se retirò el rol
       [email]
     );
 
     if (users.length < 1) {
       generateError("Usuario no encontrado", 404);
-
-
     }
 
     return users[0];
