@@ -15,9 +15,10 @@ app.use((req, res, next) => {
 //Middleware que muestra informacion sobre la peticion entrante.
 app.use(morgan("dev"));
 
-//Middleware de usuarios
+//importamos los middleware personalizado
+const authUser= require('./middlewares/authUser');
 
-//const authUser = require("./middlewares/authUser");
+const getUser = require('./controllers/users/getUser');
 //const userExists = require("./middlewares/userExists");
 
 const {
@@ -31,6 +32,10 @@ app.post("/users", newUser);
 
 // Login de usuario.
 app.post("/users/login", loginUser);
+
+//obtener info del usuario del token
+
+app.get('/users', authUser, getUser);
 
 // Obtener información del perfil de un usuario.
 //app.get("/users/:userId", getUser);

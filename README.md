@@ -38,7 +38,7 @@ Implementar una API que permita publicar notas privadas de texto y categorizarla
 - POST [/users/register] - Registro de un nuevo usuario. ✅
 - POST [/users/login] - Permite logear un usuario. ✅
 - GET [/users] - Devuelve información del usuario del token.
-- PUT [/users/avatar] - Editar el avatar.(?).
+
 
 - ### Notas:
 
