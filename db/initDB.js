@@ -1,6 +1,6 @@
-require("dotenv").config();
+require('dotenv').config();
 
-const getDB = require("./getDB");
+const getDB = require('./getDB');
 
 const main = async () => {
   let connection;
@@ -8,13 +8,16 @@ const main = async () => {
   try {
     connection = await getDB();
 
-    console.log("Borrando tablas...");
+    console.log('Borrando tablas...');
 
-    await connection.query("DROP TABLE IF EXISTS notes");
-    await connection.query("DROP TABLE IF EXISTS categories");
-    await connection.query("DROP TABLE IF EXISTS users");
-
-    console.log("Creando tablas...");
+    // await connection.query("DROP TABLE IF EXISTS notes");
+    // await connection.query("DROP TABLE IF EXISTS categories");
+    // await connection.query("DROP TABLE IF EXISTS users");
+    await connection.query('DROP DATABASE IF EXISTS notes');
+    console.log('creando base datos');
+    await connection.query('CREATE DATABASE notes');
+    await connection.query('USE notes');
+    console.log('Creando tablas...');
 
     await connection.query(`
             CREATE TABLE IF NOT EXISTS users (
@@ -48,7 +51,7 @@ const main = async () => {
         )
     `);
 
-    console.log("!Tablas creadas con exito");
+    console.log('!Tablas creadas con exito');
   } catch (err) {
     console.error(err);
   } finally {
