@@ -6,13 +6,13 @@ const newUser = async (req, res, next) => {
     const { email, username, password } = req.body;
 
     if (!email || !username || !password) {
-      generateError("Faltan campos", 400)
+      generateError("Faltan campos", 400);
     }
 
     await insertUserQuery(email, username, password);
     res.send({
-      status: "ok",
-      message: "usuario creado",
+      status: "Success",
+      message: "Usuario creado",
     });
   } catch (err) {
     next(err);

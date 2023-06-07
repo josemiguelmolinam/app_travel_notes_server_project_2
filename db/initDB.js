@@ -29,18 +29,29 @@ const main = async () => {
                 
               )
         `);
-
+    
     await connection.query(`
             CREATE TABLE IF NOT EXISTS notes (
                 id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
                 title VARCHAR(100) NOT NULL,
                 text TEXT NOT NULL,
-                category_id INT UNSIGNED,
+                categoryId INT UNSIGNED,
                 is_public BOOLEAN DEFAULT false,
                 userId INT UNSIGNED,
                 FOREIGN KEY (userId) REFERENCES users(id)
               )  
            `);
+
+await connection.query(`
+        CREATE TABLE IF NOT EXISTS notesPhotos (
+            id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+            noteId INT UNSIGNED NOT NULL,
+            name VARCHAR(50) UNIQUE NOT NULL,
+            createdAt DATETIME NOT NULL,
+            FOREIGN KEY (noteId) REFERENCES notes(id)
+            
+          )
+    `);
 
     await connection.query(`
             CREATE TABLE IF NOT EXISTS categories (

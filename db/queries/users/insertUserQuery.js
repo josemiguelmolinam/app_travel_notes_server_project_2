@@ -17,9 +17,10 @@ const insertUserQuery = async (email, username, password) => {
       generateError("Ya existe un usuario con este email", 403);
     }
 
-    [users] = await connection.query(`SELECT id FROM users WHERE username = ?`, [
-      username,
-    ]);
+    [users] = await connection.query(
+      `SELECT id FROM users WHERE username = ?`,
+      [username]
+    );
     if (users.length > 0) {
       generateError("Ya existe un usuario con este nombre", 403);
     }

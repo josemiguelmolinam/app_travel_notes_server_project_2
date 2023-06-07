@@ -1,5 +1,5 @@
 const getDB = require("../../getDB");
-const {generateError}= require('../../../helpers');
+const { generateError } = require("../../../helpers");
 
 const selectUserByIdQuery = async (userId) => {
   let connection;
@@ -8,7 +8,7 @@ const selectUserByIdQuery = async (userId) => {
     connection = await getDB();
 
     const [users] = await connection.query(
-      `SELECT id,email, password, createdAt  FROM users WHERE id = ?`,
+      `SELECT id, email, username, password, createdAt  FROM users WHERE id = ?`,
       [userId]
     );
 

@@ -28,7 +28,6 @@ const loginUser = async (req, res, next) => {
       expiresIn: "7d",
     });
 
-    
     res.send({
       status: "Success",
       data: {
