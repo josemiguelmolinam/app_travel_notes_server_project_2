@@ -43,6 +43,7 @@ Implementar una API que permita publicar notas privadas de texto y categorizarla
 - POST [/notes] - Crea una nueva nota.
 - GET [/notes] - Obtiene el listado de notas del usuario.
 - GET [/notes/:noteId] - Obtiene información de una nota específica.
+- GET [/users/:userId] - Retorna información de un usuario concreto. 
 - PUT [/notes/:noteId] - Modifica una nota existente.
 
 - ### Opcional notas:
