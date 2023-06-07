@@ -1,8 +1,8 @@
-require("dotenv").config();
+require('dotenv').config();
 
-const express = require("express");
-const fileUpload = require("express-fileupload");
-const morgan = require("morgan");
+const express = require('express');
+const fileUpload = require('express-fileupload');
+const morgan = require('morgan');
 
 const app = express();
 
@@ -16,55 +16,63 @@ app.use((req, res, next) => {
 });
 
 //Middleware que muestra informacion sobre la peticion entrante.
-app.use(morgan("dev"));
+app.use(morgan('dev'));
 
 //importamos los middleware personalizado
-const authUser = require("./middlewares/authUser");
+const authUser = require('./middlewares/authUser');
 
-const getUser = require("./controllers/users/getUser");
+const getUser = require('./controllers/users/getUser');
 //const userExists = require("./middlewares/userExists");
 
-const { newUser, loginUser } = require("./controllers/users");
+const { newUser, loginUser } = require('./controllers/users');
 
 // Registro de un usuario
-app.post("/users", newUser);
+app.post('/users', newUser);
 
 // Login de usuario.
-app.post("/users/login", loginUser);
+app.post('/users/login', loginUser);
+
+app.get('/users/:userId', getUser);
+const schema = Joi.number().positive().integer();
+
+const validation = schema.validate(req.params.idUser);
+
+if (validation.error) {
+  console.error(validation.error.message);
+}
 
 //obtener info del usuario del token
 
-app.get("/users", authUser, getUser);
+app.get('/users', authUser, getUser);
 
 //middleware notes
-const { newNote } 
-= require("./controllers/notes");
+const { newNote } = require('./controllers/notes');
 // nueva entrada
-app.post("/notes", authUser, userExists, newNote);
+app.post('/notes', authUser, userExists, newNote);
 
 // Obtener información del perfil de un usuario.
 //app.get("/users/:userId", getUser);
 
 // Funciones controladoras de las notas.
-const { newNote } = require("./controllers/notes");
+const { newNote } = require('./controllers/notes');
 
 // Crear una nueva nota.
-app.post("/notes", authUser, newNote);
+app.post('/notes', authUser, newNote);
 
 // Middleware de error.
 app.use((err, req, res, next) => {
   console.error(err);
 
   res.status(err.httpStatus || 500).send({
-    status: "error",
+    status: 'error',
     message: err.message,
   });
 });
 //Middleware de ruta no encontrada.
 app.use((req, res) => {
   res.status(404).send({
-    status: "error",
-    message: "Ruta no encontrada",
+    status: 'error',
+    message: 'Ruta no encontrada',
   });
 });
 // ponemos el servi...
