@@ -52,12 +52,20 @@ app.get('/users', authUser, getUser);
   ####### middleware notes#########
   #################################*/
 
-const { newNote, listNotes } = require('./controllers/notes');
+const { newNote, listNotes, getNotes } = require('./controllers/notes');
+
 // nueva entrada
 app.post('/notes', authUser, userExists, newNote);
+
 // Lista de notas.
 app.get('/notes', authUser, userExists, listNotes);
-// Middleware de error.
+
+//obtenemos info de una nota concreta
+app.get('/notes/:noteId', authUser, userExists, getNotes);
+
+/*#################################
+  ####### middleware error#########
+  #################################*/
 app.use((err, req, res, next) => {
   console.error(err);
 

@@ -50,13 +50,12 @@ Descripción del proyecto.
 
 - # Opcional notas:
 
-- PUT [/notes/:noteId/public] - Modifica la privacidad de la nota.
+- PUT [/notes/:noteId/public] - Modifica la privacidad de la nota.(añadir a)
 - DELETE [/notes/:noteId/delete] - Elimina una nota.
-- POST [/categories] Crea una nueva categoria.
-- POST [/notes/:noteId/photo] - Subir imagen.
 
 # Opcional categorias:
 
+- POST [/categories] Crea una nueva categoria.
 - PUT [/categories/:categoryId] - Edita categoria existente.
 - DELETE [/categories/:categoryId] - Elimina categoria existente.
 - GET [/categories] - Devuelve todas las categorias.

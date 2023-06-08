@@ -1,4 +1,4 @@
-const selectAllEntriesQuery = require('../../db/queries/notes/selectAllNotesQuery');
+const selectAllNotesIdQuery = require('../../db/queries/notes/selectAllNotesQuery');
 
 const getNote = async (req, res, next) => {
   try {

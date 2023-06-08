@@ -1,3 +1,4 @@
+const { generateError } = require('../../../helpers');
 const getDB = require('../../getDB');
 
 const selectAllNotesIdQuery = async (notesId, userId = 0) => {
@@ -8,26 +9,32 @@ const selectAllNotesIdQuery = async (notesId, userId = 0) => {
     const [notes] = await connection.query(
       `
         SELECT
-            E.id,
-            E.title,
-            E.text,
-            E.categoryId,
+            N.id,
+            N.title,
+            N.text,
+            N.image,
+            N.categoryId,
             U.username,
-            E.userId = ? AS owner,
-            E.createdAt
+            N.userId = ? AS owner,
+            N.createdAt
 
-            FROM notes E INNER JOIN users U ON U.id= E.userId
+            FROM notes N INNER JOIN users U ON U.id = N.userId
+            WHERE N.id = ?
             
-            ORDER BY E.createdAt DESC
 
         `,
-      [userId, `%${keyword}%`, `%${keyword}%`, `%${keyword}%`]
+      [userId, notesId]
     );
 
-    return notes;
+    //si no hay entradas lanzamos error
+    if (notes.length < 1) {
+      generateError('Nota no encontrada', 400);
+    }
+
+    return notes[0];
   } finally {
     if (connection) connection.release();
   }
 };
 
-module.exports = selectAllNotesQuery;
+module.exports = selectAllNotesIdQuery;
