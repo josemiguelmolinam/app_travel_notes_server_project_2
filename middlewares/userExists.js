@@ -1,6 +1,6 @@
 const getDB = require('../db/getDB');
 
-const generateError = require('../services/generateError');
+const { generateError } = require('../helpers');
 
 const userExists = async (req, res, next) => {
   let connection;

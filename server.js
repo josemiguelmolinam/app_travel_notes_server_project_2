@@ -18,11 +18,13 @@ app.use((req, res, next) => {
 //Middleware que muestra informacion sobre la peticion entrante.
 app.use(morgan('dev'));
 
-//importamos los middleware personalizado
+/*#################################
+  ###### middleware usuarios#######
+  #################################*/
 const authUser = require('./middlewares/authUser');
 
 const getUser = require('./controllers/users/getUser');
-//const userExists = require("./middlewares/userExists");
+const userExists = require('./middlewares/userExists');
 
 const { newUser, loginUser } = require('./controllers/users');
 
@@ -33,31 +35,29 @@ app.post('/users', newUser);
 app.post('/users/login', loginUser);
 
 app.get('/users/:userId', getUser);
-const schema = Joi.number().positive().integer();
 
-const validation = schema.validate(req.params.idUser);
+// const schema = Joi.number().positive().integer();
 
-if (validation.error) {
-  console.error(validation.error.message);
-}
+// const validation = schema.validate(req.params.idUser);
+
+// if (validation.error) {
+//   console.error(validation.error.message);
+// }
 
 //obtener info del usuario del token
 
 app.get('/users', authUser, getUser);
 
-//middleware notes
+/*#################################
+  ####### middleware notes#########
+  #################################*/
+
 const { newNote } = require('./controllers/notes');
 // nueva entrada
 app.post('/notes', authUser, userExists, newNote);
 
 // Obtener información del perfil de un usuario.
 //app.get("/users/:userId", getUser);
-
-// Funciones controladoras de las notas.
-const { newNote } = require('./controllers/notes');
-
-// Crear una nueva nota.
-app.post('/notes', authUser, newNote);
 
 // Middleware de error.
 app.use((err, req, res, next) => {
