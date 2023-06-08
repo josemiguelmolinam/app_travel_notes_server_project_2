@@ -4,13 +4,13 @@ const { generateError } = require('../../helpers');
 
 const newNote = async (req, res, next) => {
   try {
-    const { title, text } = req.body;
+    const { title, text, categoryId } = req.body;
 
-    if (!title || !text) {
+    if (!title || !text || !categoryId) {
       generateError('Falta campos', 400);
     }
 
-    const entry = await insertNoteQuery(title, text, req.user.id);
+    const entry = await insertNoteQuery(title, text, categoryId, req.user.id);
 
     // array donde pushereamos el nombre las fotos si las hay
     const photos = [];

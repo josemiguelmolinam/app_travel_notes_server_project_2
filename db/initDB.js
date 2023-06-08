@@ -29,20 +29,20 @@ const main = async () => {
                 
               )
         `);
-    
+
     await connection.query(`
             CREATE TABLE IF NOT EXISTS notes (
                 id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
                 title VARCHAR(100) NOT NULL,
                 text TEXT NOT NULL,
-                categoryId INT UNSIGNED,
-                is_public BOOLEAN DEFAULT false,
+                categoryId VARCHAR(30) NOT NULL,
                 userId INT UNSIGNED,
+                createdAt DATETIME NOT NULL,
                 FOREIGN KEY (userId) REFERENCES users(id)
               )  
            `);
 
-await connection.query(`
+    await connection.query(`
         CREATE TABLE IF NOT EXISTS notesPhotos (
             id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
             noteId INT UNSIGNED NOT NULL,

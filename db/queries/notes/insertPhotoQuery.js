@@ -1,4 +1,4 @@
-const getDB = require("../../getDB");
+const getDB = require('../../getDB');
 
 const insertPhotoQuery = async (photo, noteId) => {
   let connection;
@@ -6,23 +6,19 @@ const insertPhotoQuery = async (photo, noteId) => {
     connection = await getDB();
     const createdAt = new Date();
     const [photo] = await connection.query(
-      `INSERT INTO (name, entryId, createdAt) VALUES (?,?,?)`,
-        [photo,noteId, createdAt]    
-        
+      `INSERT INTO notesPhotos(name, entryId, createdAt) VALUES (?,?,?)`,
+      [photo, noteId, createdAt]
     );
 
     return {
-        id: photo.insertId,
-        name: photo,
-        noteId,
-        createdAt,
+      id: photo.insertId,
+      name: photo,
+      noteId,
+      createdAt,
     };
-
-
-
-} finally {
+  } finally {
     if (connection) connection.release();
-   }
+  }
 };
 
 module.exports = insertPhotoQuery;
