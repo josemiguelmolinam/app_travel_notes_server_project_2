@@ -1,6 +1,6 @@
 const getDB = require('../../getDB');
 
-const insertNoteQuery = async (title, text, categoryId, userId) => {
+const insertNoteQuery = async (title, text, categoryId, imgName, userId) => {
   let connection;
 
   try {
@@ -8,15 +8,16 @@ const insertNoteQuery = async (title, text, categoryId, userId) => {
 
     const createdAt = new Date();
 
-    const [entry] = await connection.query(
-      `INSERT INTO notes(title, text, categoryId, userId, createdAt) VALUES(?, ?, ?, ?, ?)`,
-      [title, text, categoryId, userId, createdAt]
+    const [note] = await connection.query(
+      `INSERT INTO notes(title, text,image, categoryId, userId, createdAt) VALUES(?, ?, ?, ?, ?,?)`,
+      [title, text, imgName, categoryId, userId, createdAt]
     );
 
     return {
-      id: entry.insertId,
+      id: note.insertId,
       title,
       text,
+      image: imgName,
       categoryId,
       userId,
       createdAt,

@@ -1,3 +1,7 @@
+const path = require('path');
+const fs = require('fs/promises');
+const sharp = require('sharp');
+const { v4: uuid } = require('uuid');
 /**
  * ####################
  * ## Generate Error ##
@@ -18,7 +22,7 @@ const generateError = (msg, code) => {
 const savePhoto = async (img, width) => {
   try {
     // Ruta absoluta al directorio de subida de archivos.
-    const uploadsPath = path.join(__dirname, UPLOADS_DIR);
+    const uploadsPath = path.join(__dirname, process.env.UPLOADS_DIR);
 
     try {
       await fs.access(uploadsPath);

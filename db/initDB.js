@@ -35,34 +35,36 @@ const main = async () => {
                 id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
                 title VARCHAR(100) NOT NULL,
                 text TEXT NOT NULL,
-                categoryId VARCHAR(30) NOT NULL,
+                categoryId INT UNSIGNED NOT NULL,
+                isPublic BOOLEAN DEFAULT false,
                 userId INT UNSIGNED,
+                image VARCHAR(100),
                 createdAt DATETIME NOT NULL,
+                modifiedAt DATETIME ,
                 FOREIGN KEY (userId) REFERENCES users(id)
               )  
            `);
 
     await connection.query(`
-        CREATE TABLE IF NOT EXISTS notesPhotos (
-            id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-            noteId INT UNSIGNED NOT NULL,
-            name VARCHAR(50) UNIQUE NOT NULL,
-            createdAt DATETIME NOT NULL,
-            FOREIGN KEY (noteId) REFERENCES notes(id)
-            
-          )
-    `);
-
-    await connection.query(`
             CREATE TABLE IF NOT EXISTS categories (
                 id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
                 name VARCHAR(50) NOT NULL,
-                categoryId INT UNSIGNED,    
-                FOREIGN KEY (categoryId) REFERENCES categories(id)
-        )
+                createdAt DATETIME NOT NULL
+                )
     `);
 
     console.log('!Tablas creadas con exito');
+
+    //agregamos las categorias
+    await connection.query(
+      `INSERT INTO categories (name, createdAt) VALUES ('lista compra', ?)`,
+      [new Date()]
+    );
+
+    await connection.query(
+      `INSERT INTO categories (name, createdAt) VALUES ('lista pelis', ?)`,
+      [new Date()]
+    );
   } catch (err) {
     console.error(err);
   } finally {
