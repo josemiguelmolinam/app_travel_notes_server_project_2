@@ -1,5 +1,5 @@
-const { generateError } = require('../../../helpers');
 const getDB = require('../../getDB');
+const { generateError } = require('../../../helpers');
 
 const selectAllNotesIdQuery = async (notesId, userId = 0) => {
   let connection;
@@ -16,6 +16,7 @@ const selectAllNotesIdQuery = async (notesId, userId = 0) => {
             N.categoryId,
             U.username,
             N.userId = ? AS owner,
+            N.userId,
             N.createdAt
 
             FROM notes N INNER JOIN users U ON U.id = N.userId
@@ -26,11 +27,12 @@ const selectAllNotesIdQuery = async (notesId, userId = 0) => {
       [userId, notesId]
     );
 
-    //si no hay entradas lanzamos error
+    //si no hay notas lanzamos error
     if (notes.length < 1) {
       generateError('Nota no encontrada', 400);
     }
-
+    //dado que no puede existir mas de una nota de un tweet con el mismo id, en caso de que en el array
+    //de notas haya una nota estara en la posicion 0
     return notes[0];
   } finally {
     if (connection) connection.release();
