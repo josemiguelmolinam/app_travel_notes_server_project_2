@@ -1,6 +1,6 @@
 const insertNoteQuery = require('../../db/queries/notes/insertNoteQuery');
 const insertPhotoQuery = require('../../db/queries/notes/insertPhotoQuery');
-const { generateError } = require('../../helpers');
+const { generateError, savePhoto } = require('../../helpers');
 
 const newNote = async (req, res, next) => {
   try {

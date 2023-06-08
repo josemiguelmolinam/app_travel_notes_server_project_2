@@ -1,20 +1,18 @@
 const getDB = require('../../getDB');
 
-const insertPhotoQuery = async (photo, noteId) => {
+const insertPhotoQuery = async (photoName, noteId) => {
   let connection;
   try {
     connection = await getDB();
     const createdAt = new Date();
     const [photo] = await connection.query(
       `INSERT INTO notesPhotos(name, entryId, createdAt) VALUES (?,?,?)`,
-      [photo, noteId, createdAt]
+      [photoName, noteId, createdAt]
     );
 
     return {
       id: photo.insertId,
-      name: photo,
-      noteId,
-      createdAt,
+      name: photoName,
     };
   } finally {
     if (connection) connection.release();

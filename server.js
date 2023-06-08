@@ -52,13 +52,11 @@ app.get('/users', authUser, getUser);
   ####### middleware notes#########
   #################################*/
 
-const { newNote } = require('./controllers/notes');
+const { newNote, listNotes } = require('./controllers/notes');
 // nueva entrada
 app.post('/notes', authUser, userExists, newNote);
-
-// Obtener información del perfil de un usuario.
-//app.get("/users/:userId", getUser);
-
+// Lista de notas.
+app.get('/notes', authUser, userExists, listNotes);
 // Middleware de error.
 app.use((err, req, res, next) => {
   console.error(err);
