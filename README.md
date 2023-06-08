@@ -44,7 +44,7 @@ Descripción del proyecto.
 - # Notas:
 
 - GET [/notes] - Obtiene el listado de notas del usuario. ✅
-- GET [/notes/:noteId] - Obtiene información de una nota específica.
+- GET [/notes/:noteId] - Obtiene información de una nota específica.✅
 - POST [/notes] - Crea una nueva nota. ✅
 - PUT [/notes/:noteId] - Modifica una nota existente.
 
