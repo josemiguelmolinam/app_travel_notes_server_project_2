@@ -3,12 +3,15 @@ require('dotenv').config();
 const express = require('express');
 const fileUpload = require('express-fileupload');
 const morgan = require('morgan');
+const methodOverride = require('method-override')
 
 const app = express();
 
 app.use(express.json());
 
 app.use(fileUpload());
+
+app.use(methodOverride)
 
 app.use((req, res, next) => {
   console.log(`http://localhost:${process.env.PORT}/${req.path}`);
@@ -85,3 +88,17 @@ app.use((req, res) => {
 app.listen(process.env.PORT, () => {
   console.log(`Server listening at http://localhost:${process.env.PORT}`);
 });
+
+exports.dashboardUpdateNote =
+    try {
+    
+      await NotBeforeError.findOneAndUpdate(
+      { _id: req.params.id },
+      { title: req.body.title },
+      )
+
+    } catch (error) {
+      
+}
+
+    
