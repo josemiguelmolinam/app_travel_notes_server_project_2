@@ -3,15 +3,20 @@ const listNotes = async (req, res, next) => {
   try {
     const { keyword } = req.query;
     //para ver las entradas hay que estar logueados
-    const notes = await selectAllNotesQuery(keyword, req.user.id);
-    res.send({
-      status: 'ok',
+    const notes = await selectAllNotesQuery(
+    keyword, 
+    req.user.id
+    
+    );
+
+  res.send({
+      status: 'Success',
       data: {
         notes,
       },
     });
   } catch (err) {
-    next(err);
+    next(err);    
   }
 };
 
