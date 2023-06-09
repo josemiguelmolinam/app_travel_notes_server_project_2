@@ -5,4 +5,5 @@ module.exports = {
   newNote,
   listNotes,
   getNotes,
+  editNote,
 };

@@ -3,7 +3,6 @@ require('dotenv').config();
 const express = require('express');
 const fileUpload = require('express-fileupload');
 const morgan = require('morgan');
-const methodOverride = require('method-override')
 
 const app = express();
 
@@ -11,7 +10,7 @@ app.use(express.json());
 
 app.use(fileUpload());
 
-app.use(methodOverride)
+app.use(methodOverride);
 
 app.use((req, res, next) => {
   console.log(`http://localhost:${process.env.PORT}/${req.path}`);
@@ -55,7 +54,12 @@ app.get('/users', authUser, getUser);
   ####### middleware notes#########
   #################################*/
 
-const { newNote, listNotes, getNotes } = require('./controllers/notes');
+const {
+  newNote,
+  listNotes,
+  getNotes,
+  editNote,
+} = require('./controllers/notes');
 
 // nueva entrada
 app.post('/notes', authUser, userExists, newNote);
@@ -66,6 +70,7 @@ app.get('/notes', authUser, userExists, listNotes);
 //obtenemos info de una nota concreta
 app.get('/notes/:noteId', authUser, userExists, getNotes);
 
+app.put('/notes', authUser, userExists, editNote);
 /*#################################
   ####### middleware error#########
   #################################*/
@@ -89,16 +94,14 @@ app.listen(process.env.PORT, () => {
   console.log(`Server listening at http://localhost:${process.env.PORT}`);
 });
 
-exports.dashboardUpdateNote =
-    try {
-    
-      await NotBeforeError.findOneAndUpdate(
+exports.dashboardUpdateNote = async (req, res) => {
+  try {
+    await Note.findOneAndUpdate(
       { _id: req.params.id },
-      { title: req.body.title },
-      )
-
-    } catch (error) {
-      
-}
-
-    
+      { title: req.body.title, body: req.body.body }
+    ).where({ user: req.user.id });
+    res.redirect('/dashboard');
+  } catch (error) {
+    console.log(error);
+  }
+};
