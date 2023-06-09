@@ -10,8 +10,6 @@ app.use(express.json());
 
 app.use(fileUpload());
 
-app.use(methodOverride);
-
 app.use((req, res, next) => {
   console.log(`http://localhost:${process.env.PORT}/${req.path}`);
   next();
