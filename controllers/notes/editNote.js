@@ -1,18 +1,20 @@
 const selectAllNotesIdQuery = require('../../db/queries/notes/selectAllNotesIdQuery');
+const editNoteQuery = require('../../db/queries/notes/editNoteQuery');
 const { generateError } = require('../../helpers');
+
 const editNote = async (req, res, next) => {
   try {
     let { title, text, categoryId } = req.body;
 
     if (!title && !text && !categoryId) {
-      generateError('Faltan campos', 400);
+      throw generateError('Faltan campos', 400);
     }
 
     // Obtenemos la nota actual por su ID
     const note = await selectAllNotesIdQuery(req.params.noteId);
 
     if (!note) {
-      generateError('La nota no existe', 404);
+      throw generateError('La nota no existe', 404);
     }
 
     // Establecemos los valores por defecto si no se proporcionan
