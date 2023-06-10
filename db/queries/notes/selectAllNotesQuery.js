@@ -8,15 +8,15 @@ const selectAllNotesQuery = async (keyword = '', userId = 0) => {
     const [notes] = await connection.query(
       `
         SELECT
-            N.id,
-            N.title,
-            N.text,
-            N.categoryId,
+            E.id,
+            E.title,
+            E.text,
+            E.categoryId,
             U.username,
-            NuserId = ? AS owner,
-            N.createdAt
+            E.userId = ? AS owner,
+            E.createdAt
 
-            FROM notes N INNER JOIN users U ON U.id= E.userId
+            FROM notes E INNER JOIN users U ON U.id= E.userId
             WHERE E.title LIKE ? OR E.text LIKE ? OR E.categoryId LIKE ?
             ORDER BY E.createdAt DESC
 
