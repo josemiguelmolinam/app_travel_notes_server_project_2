@@ -15,11 +15,11 @@ app.use((req, res, next) => {
   next();
 });
 
-//Middleware que muestra informacion sobre la peticion entrante.
+// Middleware que muestra informacion sobre la peticion entrante.
 app.use(morgan('dev'));
 
 /*#################################
-  ###### middleware usuarios#######
+  ###### Middleware usuarios#######
   #################################*/
 const authUser = require('./middlewares/authUser');
 
@@ -49,7 +49,7 @@ app.get('/users/:userId', getUser);
 app.get('/users', authUser, getUser);
 
 /*#################################
-  ####### middleware notes#########
+  ####### Middleware notes#########
   #################################*/
 
 const {
@@ -57,6 +57,11 @@ const {
   listNotes,
   getNotes,
   editNote,
+  deleteNote,
+  createCategory,
+  editCategory,
+  deleteCategory,
+  getAllCategories,
 } = require('./controllers/notes');
 
 // nueva entrada
@@ -68,12 +73,30 @@ app.get('/notes', authUser, userExists, listNotes);
 //obtenemos info de una nota concreta
 app.get('/notes/:noteId', authUser, userExists, getNotes);
 
+// Eliminamos una nota.(estamos probando si va bien si es notes o note)
+app.delete('/notes/:noteId/', authUser, userExists, deleteNote);
+
 //editar notas
 app.put('/notes', authUser, userExists, editNote);
 
+// Crear una nueva categoría
+app.post('/notes/categories', authUser, userExists, createCategory);
+
+// Editar una categoría existente
+app.put('/notes/categories/:categoryId', authUser, 
+userExists, editCategory);
+
+// Eliminar una categoría existente
+app.delete('/notes/categories/:categoryId', authUser, userExists, deleteCategory);
+
+// Obtener todas las categorías
+app.get('/notes/categories', authUser, getAllCategories);
+
+
 /*#################################
-  ####### middleware error#########
+  ####### Middleware error#########
   #################################*/
+  
 app.use((err, req, res, next) => {
   console.error(err);
 
@@ -94,14 +117,14 @@ app.listen(process.env.PORT, () => {
   console.log(`Server listening at http://localhost:${process.env.PORT}`);
 });
 
-exports.dashboardUpdateNote = async (req, res) => {
-  try {
-    await Note.findOneAndUpdate(
-      { _id: req.params.id },
-      { title: req.body.title, body: req.body.body }
-    ).where({ user: req.user.id });
-    res.redirect('/dashboard');
-  } catch (error) {
-    console.log(error);
-  }
-};
+//exports.dashboardUpdateNote = async (req, res) => {
+  //try {
+    //await Note.findOneAndUpdate(
+      //{ _id: req.params.id },
+      //{ title: req.body.title, body: req.body.body }
+    //).where({ user: req.user.id });
+    //res.redirect('/dashboard');
+  //} catch (error) {
+    //console.log(error);
+  //}
+//};

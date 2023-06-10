@@ -9,10 +9,10 @@ const getDB = async () => {
     if (!pool) {
       pool = mysql.createPool({
         connectionLimit: 10,
-        host: 'localhost',
-        user: 'demo',
-        password: '123456',
-        database: 'notes',
+        host:MYSQL_HOST,
+        user: MYSQL_USER,
+        password: MYSQL_PASS,
+        database: MYSQL_DB,
         timezone: 'Z',
       });
     }

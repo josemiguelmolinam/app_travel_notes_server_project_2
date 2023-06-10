@@ -33,7 +33,7 @@ Descripción del proyecto.
 - nombre
 - createdAt
 
-### Endpoints
+### Endpoints ###
 
 # Usuarios:
 
@@ -46,16 +46,16 @@ Descripción del proyecto.
 - GET [/notes] - Obtiene el listado de notas del usuario. ✅
 - GET [/notes/:noteId] - Obtiene información de una nota específica.✅
 - POST [/notes] - Crea una nueva nota. ✅
-- PUT [/notes/:noteId] - Modifica una nota existente.
+- PUT [/notes/:noteId] - Modificar una nota existente.
 
 - # Opcional notas:
 
-- PUT [/notes/:noteId/public] - Modifica la privacidad de la nota.(añadir a)
-- DELETE [/notes/:noteId/delete] - Elimina una nota.
+- PUT [/notes/:noteId/public] - Modificar la privacidad de la nota.
+- DELETE [/notes/:noteId/delete] - Elimina una nota. ✅ #(Falta ejecutar el endpoint con postman para verificar si funciona)#
 
 # Opcional categorias:
 
-- POST [/categories] Crea una nueva categoria.
-- PUT [/categories/:categoryId] - Edita categoria existente.
-- DELETE [/categories/:categoryId] - Elimina categoria existente.
-- GET [/categories] - Devuelve todas las categorias.
+- POST [/categories] Crea una nueva categoria. ✅ #(Falta ejecutar el endpoint con postman para verificar si funciona)#
+- PUT [/categories/:categoryId] - Editar una categoria existente. ✅ #(Falta ejecutar el endpoint con postman para verificar si funciona)#
+- DELETE [/categories/:categoryId] - Eliminar una categoria existente. ✅ #(Falta ejecutar el endpoint con postman para verificar si funciona)
+- GET [/categories] - Devuelve todas las categorias. ✅ #(Falta ejecutar el endpoint con postman para verificar si funciona)
