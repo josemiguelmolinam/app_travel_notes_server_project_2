@@ -4,6 +4,7 @@ const { MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DB } = process.env;
 
 let pool;
 
+ // Función para obtener una conexión a la base de datos.
 const getDB = async () => {
   try {
     if (!pool) {

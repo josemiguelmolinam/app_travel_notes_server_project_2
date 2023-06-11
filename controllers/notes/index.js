@@ -7,6 +7,7 @@ const createCategory = require('./createCategory');
 const editCategory = require('./editCategory');
 const deleteCategory = require('./deleteCategory');
 const getAllCategories = require('./getAllCategories');
+const updateNotePrivacy = require('./updateNotePrivacy');
 
 module.exports = {
   newNote,
@@ -18,4 +19,5 @@ module.exports = {
   editCategory,
   deleteCategory,
   getAllCategories,
+  updateNotePrivacy,
 };

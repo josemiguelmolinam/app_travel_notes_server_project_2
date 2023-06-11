@@ -1,9 +1,9 @@
 const getDB = require("../../getDB");
-
 const bcrypt = require("bcrypt");
+const { generateError } = require('../../../helpers');
 
 const insertUserQuery = async (email, username, password) => {
-  let conection;
+  let connection;
 
   try {
     connection = await getDB();
@@ -25,10 +25,10 @@ const insertUserQuery = async (email, username, password) => {
       generateError("Ya existe un usuario con este nombre", 403);
     }
 
-    //encriptamos la contraseña
+    // Encriptamos la contraseña.
     const hashedPass = await bcrypt.hash(password, 10);
 
-    //insertamos el usurio
+    // Insertamos el usuario.
     await connection.query(
       `INSERT INTO users (email, username, password, createdAt) VALUES (?,?,?,?)`,
       [email, username, hashedPass, new Date()]

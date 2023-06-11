@@ -5,16 +5,19 @@ const newNote = async (req, res, next) => {
   try {
     const { title, text, categoryId } = req.body;
 
+    // Verificar si faltan campos obligatorios.
     if (!title || !text || !categoryId) {
       generateError('Falta campos', 400);
     }
 
     let imgName;
 
+    // Verificar si se adjuntó una imagen y guardarla.
     if (req.files?.image) {
       imgName = await savePhoto(req.files.image, 500);
     }
-
+    
+    // Insertar la nueva nota en la base datos.
     const note = await insertNoteQuery(
       title,
       text,
@@ -23,6 +26,7 @@ const newNote = async (req, res, next) => {
       req.user.id
     );
 
+    // Enviar la respuesta con la nota creada.
     res.send({
       status: 'Success',
       data: {

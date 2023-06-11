@@ -1,6 +1,7 @@
 const getDB = require("../../getDB");
 const { generateError } = require("../../../helpers");
 
+// Consulta para seleccionar un usuario por su ID.
 const selectUserByIdQuery = async (userId) => {
   let connection;
 

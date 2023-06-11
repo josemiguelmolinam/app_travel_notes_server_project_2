@@ -30,13 +30,13 @@ const selectAllNotesIdQuery = async (noteId, userId = 0) => {
       [userId, noteId]
     );
 
-    //si no hay notas lanzamos error
+    // Si no hay notas, lanzamos un error.
     if (notes.length < 1) {
       throw generateError('Nota no encontrada', 404);
     }
 
-    //dado que no puede existir mas de una nota de un tweet con el mismo id, en caso de que en el array
-    //de notas haya una nota estara en la posicion 0
+    // Dado que no puede existir más de una nota de un tweet con el mismo ID, en caso de que en el array.
+    // de notas haya una nota, estará en la posición 0.
     return notes[0];
   } finally {
     if (connection) connection.release();

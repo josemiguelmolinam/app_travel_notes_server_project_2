@@ -7,6 +7,8 @@ const { v4: uuid } = require('uuid');
  * ## Generate Error ##
  * ####################
  */
+
+// Función para generar un error con un mensaje y código HTTP personalizados.
 const generateError = (msg, code) => {
   const err = new Error(msg);
   err.httpStatus = code;
@@ -19,6 +21,7 @@ const generateError = (msg, code) => {
  * ################
  */
 
+// Función para guardar una foto en el servidor y redimensionarla.
 const savePhoto = async (img, width) => {
   try {
     // Ruta absoluta al directorio de subida de archivos.

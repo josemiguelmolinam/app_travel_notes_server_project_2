@@ -4,6 +4,7 @@ const deleteNote = async (req, res, next) => {
   try {
     const { noteId } = req.params;
 
+    // Llama a la función de consulta para eliminar la nota de la base de datos.
     await deleteNoteQuery(noteId, req.user.id);
 
     res.send({

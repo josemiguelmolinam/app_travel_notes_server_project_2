@@ -1,5 +1,7 @@
 const getDB = require("../../getDB");
+const { generateError } = require('../../../helpers');
 
+// Consulta para seleccionar un usuario por su email.
 const selectUserByEmailQuery = async (email) => {
   let connection;
 

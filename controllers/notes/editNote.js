@@ -10,19 +10,19 @@ const editNote = async (req, res, next) => {
       throw generateError('Faltan campos', 400);
     }
 
-    // Obtenemos la nota actual por su ID
+    // Obtenemos la nota actual por su ID.
     const note = await selectAllNotesIdQuery(req.params.noteId);
 
     if (!note) {
       throw generateError('La nota no existe', 404);
     }
 
-    // Establecemos los valores por defecto si no se proporcionan
+    // Establecemos los valores por defecto si no se proporcionan.
     title = title || note.title;
     text = text || note.text;
     categoryId = categoryId || note.categoryId;
 
-    // Actualizar los datos de la nota
+    // Actualizar los datos de la nota.
     await editNoteQuery(title, text, categoryId, req.params.noteId);
     res.send({
       status: 'Success',

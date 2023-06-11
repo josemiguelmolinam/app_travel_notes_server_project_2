@@ -7,6 +7,8 @@ const deleteCategoryQuery = async (categoryId) => {
   try {
     connection = await getDB();
 
+
+    // Eliminar la categoria de la base de datos.
     await connection.query('DELETE FROM categories WHERE id = ?', [categoryId]);
   } catch (error) {
     throw generateError('Error al eliminar la categoría', 500);

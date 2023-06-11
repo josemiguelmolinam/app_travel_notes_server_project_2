@@ -5,6 +5,7 @@ const deleteCategory = async (req, res, next) => {
   try {
     const { categoryId } = req.params;
 
+    // Llama a la función de consulta para eliminar la categoría de la base de datos.
     await deleteCategoryQuery(categoryId);
 
     res.send({

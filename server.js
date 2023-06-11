@@ -15,26 +15,37 @@ app.use((req, res, next) => {
   next();
 });
 
-// Middleware que muestra informacion sobre la peticion entrante.
+// Middleware que muestra información sobre la petición entrante.
 app.use(morgan('dev'));
+
 
 /*#################################
   ###### Middleware usuarios#######
   #################################*/
+
+// Middleware para autenticar al usuario.
 const authUser = require('./middlewares/authUser');
 
+// Controlador para obtener información de un usuario
 const getUser = require('./controllers/users/getUser');
+
+// Middleware para verificar si el usuario existe.
 const userExists = require('./middlewares/userExists');
 
+// Controladores para registro y login de usuario.
 const { newUser, loginUser } = require('./controllers/users');
 
-// Registro de un usuario
+// Registro de un usuario.
 app.post('/users', newUser);
 
 // Login de usuario.
 app.post('/users/login', loginUser);
 
+// Obtener información de un usuario por su ID.
 app.get('/users/:userId', getUser);
+
+// Obtener información del usuario del token.
+app.get('/users', authUser, getUser);
 
 // const schema = Joi.number().positive().integer();
 
@@ -46,11 +57,13 @@ app.get('/users/:userId', getUser);
 
 //obtener info del usuario del token
 
-app.get('/users', authUser, getUser);
+
 
 /*#################################
   ####### Middleware notes#########
   #################################*/
+
+// Controladores para las notas.
 
 const {
   newNote,
@@ -62,35 +75,39 @@ const {
   editCategory,
   deleteCategory,
   getAllCategories,
+  updateNotePrivacy,
 } = require('./controllers/notes');
 
-// nueva entrada
+// Crear una nueva nota.
 app.post('/notes', authUser, userExists, newNote);
 
-// Lista de notas.
+// Obtener el listado de notas del usuario.
 app.get('/notes', authUser, userExists, listNotes);
 
-//obtenemos info de una nota concreta
+// Obtener información de una nota específica.
 app.get('/notes/:noteId', authUser, userExists, getNotes);
 
-// Eliminamos una nota.(estamos probando si va bien si es notes o note)
+// Eliminar una nota.
 app.delete('/notes/:noteId/', authUser, userExists, deleteNote);
 
-//editar notas
+// Editar una nota existente.
 app.put('/notes', authUser, userExists, editNote);
 
-// Crear una nueva categoría
+// Crear una nueva categoría.
 app.post('/notes/categories', authUser, userExists, createCategory);
 
-// Editar una categoría existente
+// Editar una categoría existente.
 app.put('/notes/categories/:categoryId', authUser, 
 userExists, editCategory);
 
-// Eliminar una categoría existente
+// Eliminar una categoría existente.
 app.delete('/notes/categories/:categoryId', authUser, userExists, deleteCategory);
 
-// Obtener todas las categorías
+// Obtener todas las categorías.
 app.get('/notes/categories', authUser, getAllCategories);
+
+// Modificar la privacidad de una nota.
+app.put('/notes/:noteId/public', authUser, userExists, updateNotePrivacy);
 
 
 /*#################################
@@ -105,6 +122,7 @@ app.use((err, req, res, next) => {
     message: err.message,
   });
 });
+
 //Middleware de ruta no encontrada.
 app.use((req, res) => {
   res.status(404).send({
@@ -112,19 +130,7 @@ app.use((req, res) => {
     message: 'Ruta no encontrada',
   });
 });
-// ponemos el servi...
+// Iniciamos el servidor.
 app.listen(process.env.PORT, () => {
   console.log(`Server listening at http://localhost:${process.env.PORT}`);
 });
-
-//exports.dashboardUpdateNote = async (req, res) => {
-  //try {
-    //await Note.findOneAndUpdate(
-      //{ _id: req.params.id },
-      //{ title: req.body.title, body: req.body.body }
-    //).where({ user: req.user.id });
-    //res.redirect('/dashboard');
-  //} catch (error) {
-    //console.log(error);
-  //}
-//};

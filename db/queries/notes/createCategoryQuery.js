@@ -7,6 +7,8 @@ const createCategoryQuery = async (name) => {
   try {
     connection = await getDB();
 
+
+    // Insertar una nueva categoría en la base de datos.
     await connection.query('INSERT INTO categories (name) VALUES (?)', [name]);
   } catch (error) {
     throw generateError('Error al crear la categoría', 500);

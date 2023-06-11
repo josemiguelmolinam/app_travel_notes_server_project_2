@@ -8,11 +8,13 @@ const userExists = async (req, res, next) => {
   try {
     connection = await getDB();
 
+    // Comprobamos si el usuario existe en la base de datos.
     const [users] = await connection.query(
       `SELECT id FROM users WHERE id = ?`,
       [req.user.id]
     );
 
+    // Si no se encuentra ningún usuario, generamos un error.
     if (users.length < 1) {
       generateError('Usuario no encontrado', 404);
     }

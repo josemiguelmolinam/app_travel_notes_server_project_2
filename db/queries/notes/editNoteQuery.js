@@ -7,7 +7,7 @@ const editNoteQuery = async (title, text, categoryId, noteId) => {
   try {
     connection = await getDB();
 
-    // Verificar si ya existe una nota con el mismo título
+    // Verificar si ya existe una nota con el mismo título.
     let [notes] = await connection.query(
       'SELECT id FROM notes WHERE title = ? AND id <> ?',
       [title, noteId]
@@ -17,7 +17,7 @@ const editNoteQuery = async (title, text, categoryId, noteId) => {
       generateError('Ya existe una nota con este título', 403);
     }
 
-    // Verificar si ya existe una nota con el mismo texto
+    // Verificar si ya existe una nota con el mismo texto.
     [notes] = await connection.query(
       'SELECT id FROM notes WHERE text = ? AND id <> ?',
       [text, noteId]
@@ -27,7 +27,7 @@ const editNoteQuery = async (title, text, categoryId, noteId) => {
       generateError('Ya existe una nota con este texto', 403);
     }
 
-    // Actualizar los datos de la nota
+    // Actualizar los datos de la nota.
     await connection.query(
       'UPDATE notes SET title = ?, text = ?, categoryId = ?, modifiedAt = ? WHERE id = ?',
       [title, text, categoryId, new Date(), noteId]

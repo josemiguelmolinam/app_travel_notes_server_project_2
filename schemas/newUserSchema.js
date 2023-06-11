@@ -1,5 +1,6 @@
 const joi = require('joi');
 
+// Esquema de validación para el registro de un nuevo usuario.
 const newUserSchema = joi.object().keys({
   email: joi
     .string()

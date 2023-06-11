@@ -13,16 +13,20 @@ const loginUser = async (req, res, next) => {
       generateError("Faltan campos", 400);
     }
 
+    // Obtener el usuario por su email.
     const user = await selectUserByEmailQuery(email);
-
+    
+    // Verificar la contraseña.
     const validPass = await bcrypt.compare(password, user.password);
 
     if (!validPass) {
       generateError("Contraseña incorrecta", 401);
     }
+     
 
+    // Generar token de autenticación.
     const tokenInfo = {
-      id: user.id, // se retiró el  rol
+      id: user.id,
     };
     const token = jwt.sign(tokenInfo, process.env.SECRET, {
       expiresIn: "7d",
