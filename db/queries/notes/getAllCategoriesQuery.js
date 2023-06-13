@@ -1,18 +1,15 @@
 const getDB = require('../../getDB');
 const { generateError } = require('../../../helpers');
 
-const getAllCategoriesQuery = async () => {
+const getAllCategoriesQuery = async (keyword = '', userId = 0) => {
   let connection;
 
   try {
     connection = await getDB();
 
-
     const [categories] = await connection.query('SELECT * FROM categories');
-
+    [userId, `%${keyword}%`];
     return categories;
-  } catch (error) {
-    throw generateError('Error al obtener las categorías', 500);
   } finally {
     if (connection) connection.release();
   }

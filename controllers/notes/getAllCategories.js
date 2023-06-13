@@ -1,20 +1,20 @@
-const { getDB, generateError } = require('../../helpers');
+const getAllCategoriesQuery = require('../../db/queries/notes/getAllCategoriesQuery');
 
 const getAllCategories = async (req, res, next) => {
   try {
-    // Obtén la conexión a la base de datos.
-    const connection = await getDB();
-
-    // Obtén todas las categorías de la base de datos
-    const [categories] = await connection.query('SELECT * FROM categories');
+    const { categoriesId } = req.params;
+    // Para ver las entradas hay que estar logueados.
+    const categories = await getAllCategoriesQuery(categoriesId, req.user.id);
 
     // Envía la respuesta al cliente con las categorías.
     res.send({
       status: 'success',
-      categories,
+      data: {
+        categories,
+      },
     });
-  } catch (error) {
-    next(generateError('Error al obtener las categorías', 500));
+  } catch (err) {
+    next(err);
   }
 };
 

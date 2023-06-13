@@ -7,9 +7,11 @@ const editCategoryQuery = async (categoryId, newName) => {
   try {
     connection = await getDB();
 
-  
     // Actualizar el nombre de la categoría en la base de datos.
-    await connection.query('UPDATE categories SET name = ? WHERE id = ?', [newName, categoryId]);
+    await connection.query('UPDATE categories SET name = ? WHERE id = ?', [
+      newName,
+      categoryId,
+    ]);
   } catch (error) {
     throw generateError('Error al editar la categoría', 500);
   } finally {

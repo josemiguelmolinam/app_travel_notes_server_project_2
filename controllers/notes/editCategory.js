@@ -1,24 +1,29 @@
 const { getDB, generateError } = require('../../helpers');
-const editCategoryQuery = require("../../db/queries/notes/editCategoryQuery");
+const editCategoryQuery = require('../../db/queries/notes/editCategoryQuery');
+
 const editCategory = async (req, res, next) => {
-    try {
-      // Obtén los parámetros necesarios de la solicitud.
-      const { categoryId } = req.params;
-      const { name } = req.body;
-  
-      // Realiza las operaciones de edición en la base de datos.
-      const connection = await getDB();
-      await connection.query('UPDATE categories SET name = ? WHERE id = ?', [name, categoryId]);
-  
-      // Envía la respuesta al cliente.
-      res.send({
-        status: 'Success',
-        message: 'Categoría editada exitosamente',
-      });
-    } catch (err) {
-      next(err);
+  try {
+    const { categoryId } = req.params;
+    const { name } = req.body;
+
+    // Verificar si se proporcionó el campo requerido
+    if (!name) {
+      throw generateError('Faltan campos', 400);
     }
-  };
-  
-  module.exports = editCategory;
-  
+
+    // Llamar a la consulta para editar la categoría en la base de datos
+    await editCategoryQuery(categoryId, name);
+
+    res.send({
+      status: 'Success',
+      message: 'Categoría editada exitosamente',
+      data: {
+        name,
+      },
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports = editCategory;

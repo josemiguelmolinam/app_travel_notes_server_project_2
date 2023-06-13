@@ -18,7 +18,6 @@ app.use((req, res, next) => {
 // Middleware que muestra información sobre la petición entrante.
 app.use(morgan('dev'));
 
-
 /*#################################
   ###### Middleware usuarios#######
   #################################*/
@@ -57,8 +56,6 @@ app.get('/users', authUser, getUser);
 
 //obtener info del usuario del token
 
-
-
 /*#################################
   ####### Middleware notes#########
   #################################*/
@@ -94,26 +91,24 @@ app.delete('/notes/:noteId/', authUser, userExists, deleteNote);
 app.put('/notes/:noteId/', authUser, userExists, editNote);
 
 // Crear una nueva categoría.
-app.post('/notes/categories', authUser, userExists, createNewCategory);
-
-// Editar una categoría existente.
-app.put('/notes/categories/:categoryId', authUser, 
-userExists, editCategory);
-
-// Eliminar una categoría existente.
-app.delete('/notes/categories/:categoryId', authUser, userExists, deleteCategory);
+app.post('/categories', authUser, userExists, createNewCategory);
 
 // Obtener todas las categorías.
-app.get('/notes/categories', authUser, getAllCategories);
+app.get('/categories', authUser, userExists, getAllCategories);
+
+// Editar una categoría existente.
+app.put('/categories/:categoryId', authUser, userExists, editCategory);
+
+// Eliminar una categoría existente.
+app.delete('/categories/:categoryId', authUser, userExists, deleteCategory);
 
 // Modificar la privacidad de una nota.
 app.put('/notes/:noteId/public', authUser, userExists, updateNotePrivacy);
 
-
 /*#################################
   ####### Middleware error#########
   #################################*/
-  
+
 app.use((err, req, res, next) => {
   console.error(err);
 
