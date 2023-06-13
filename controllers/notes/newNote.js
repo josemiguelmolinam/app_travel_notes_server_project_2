@@ -7,7 +7,7 @@ const newNote = async (req, res, next) => {
 
     // Verificar si faltan campos obligatorios.
     if (!title || !text || !categoryId) {
-      generateError('Falta campos', 400);
+    throw generateError('Falta campos', 400);
     }
 
     let imgName;

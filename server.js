@@ -71,7 +71,7 @@ const {
   getNotes,
   editNote,
   deleteNote,
-  createCategory,
+  createNewCategory,
   editCategory,
   deleteCategory,
   getAllCategories,
@@ -91,10 +91,10 @@ app.get('/notes/:noteId', authUser, userExists, getNotes);
 app.delete('/notes/:noteId/', authUser, userExists, deleteNote);
 
 // Editar una nota existente.
-app.put('/notes', authUser, userExists, editNote);
+app.put('/notes/:noteId/', authUser, userExists, editNote);
 
 // Crear una nueva categoría.
-app.post('/notes/categories', authUser, userExists, createCategory);
+app.post('/notes/categories', authUser, userExists, createNewCategory);
 
 // Editar una categoría existente.
 app.put('/notes/categories/:categoryId', authUser, 

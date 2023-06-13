@@ -3,7 +3,7 @@ const listNotes = require('./listNotes');
 const getNotes = require('./getNotes');
 const editNote = require('./editNote');
 const deleteNote = require('./deleteNote');
-const createCategory = require('./createCategory');
+const createNewCategory = require('./createNewCategory');
 const editCategory = require('./editCategory');
 const deleteCategory = require('./deleteCategory');
 const getAllCategories = require('./getAllCategories');
@@ -15,7 +15,7 @@ module.exports = {
   getNotes,
   editNote,
   deleteNote,
-  createCategory,
+  createNewCategory,
   editCategory,
   deleteCategory,
   getAllCategories,

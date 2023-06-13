@@ -4,7 +4,7 @@ const listNotes = async (req, res, next) => {
     const { keyword } = req.query;
 
     // Obtener todas las notas según la palabra clave y el ID del usuario autenticado
-    const notes = await selectAllNotesQuery(keyword, req.user.id);
+    const notes = await selectAllNotesQuery(keyword, req.user?.id);
 
     // Enviar la respuesta con las notas obtenidas.
     res.send({

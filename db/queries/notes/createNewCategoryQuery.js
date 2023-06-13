@@ -1,7 +1,7 @@
 const getDB = require('../../getDB');
 const { generateError } = require('../../../helpers');
 
-const createCategoryQuery = async (name) => {
+const createNewCategoryQuery = async (name) => {
   let connection;
 
   try {
@@ -17,4 +17,4 @@ const createCategoryQuery = async (name) => {
   }
 };
 
-module.exports = createCategoryQuery;
+module.exports = createNewCategoryQuery;
