@@ -1,4 +1,4 @@
-const { getDB, generateError } = require('../../../helpers');
+const getDB = require('../../getDB');
 
 const updateNotePrivacyQuery = async (noteId, isPublic) => {
   let connection;

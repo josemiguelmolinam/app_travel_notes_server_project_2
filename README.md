@@ -50,7 +50,7 @@ Descripción del proyecto.
 
 - # Opcional notas:
 
-- PUT [/notes/:noteId/public] - Editar la privacidad de la nota. ✅ #(Falta ejecutar el endpoint con postman para verificar si funciona)#
+- PUT [/notes/:noteId/public] - Editar la privacidad de la nota. ✅
 - DELETE [/notes/:noteId/delete] - Elimina una nota. ✅
 
 # Opcional categorias:
