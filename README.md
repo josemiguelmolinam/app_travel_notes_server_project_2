@@ -18,6 +18,8 @@
 - createdAt
 - modifiedAt
 
+
+
 - Note:
 
 - id
@@ -27,11 +29,15 @@
 - categoriaId
 - createdAt
 
+
+
 - Category:
 
 - id
 - name
 - createdAt
+
+
 
 ### Endpoints ###
 
