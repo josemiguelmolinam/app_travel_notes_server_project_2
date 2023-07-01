@@ -9,7 +9,7 @@
 
 ### Entities ###
 
-- User:
+## USER:
 
 - id
 - email
@@ -20,7 +20,7 @@
 
 
 
-- Note:
+ ## NOTE:
 
 - id
 - userId
@@ -31,7 +31,7 @@
 
 
 
-- Category:
+## CATEGORY:
 
 - id
 - name
