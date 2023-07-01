@@ -1,13 +1,13 @@
-###### App Notas de Texto ######
+###### Text Notes App ######
 
-Descripción del proyecto.
+ Project Description:
 
-- El proyecto consiste en desarrollar una API que permita a los usuarios crear y categorizar notas privadas de texto.
-- Los usuarios pueden registrarse, iniciar sesión y gestionar sus propias notas.
-- Cada nota está asociada a un usuario y puede tener un título, texto y categoría.
-- También se pueden realizar operaciones opcionales como marcar una nota como pública, eliminar una nota, crear, editar y borrar categorías, y asociar una imagen única a cada nota.
+- The project aims to develop an API that allows users to create and categorize private text notes.
+- Users can register, log in, and manage their own notes.
+- Each note is associated with a user and can have a title, text, and category.
+- Optional operations include marking a note as public, deleting a note, creating, editing, and deleting categories, and associating a unique image with each note.
 
-## Entidades
+### Entities ###
 
 - User:
 
@@ -18,7 +18,7 @@ Descripción del proyecto.
 - createdAt
 - modifiedAt
 
-- Nota:
+- Note:
 
 - id
 - userId
@@ -27,32 +27,32 @@ Descripción del proyecto.
 - categoriaId
 - createdAt
 
-- Categoria:
+- Category:
 
 - id
-- nombre
+- name
 - createdAt
 
-### Endpoints
+### Endpoints ###
 
-# Usuarios:
+# Users:
 
-- POST [/users/register] - Registro de un nuevo usuario. 
-- POST [/users/login] - Permite logear un usuario. 
-- GET [/users] - Devuelve información del usuario del token. 
+- POST [/users/register] - Register a new user.
+- POST [/users/login] - Allow a user to log in.
+- GET [/users] - Retrieve user information based on the token. 
 
-- # Notas:
+# Notes:
 
-- GET [/notes] - Obtiene el listado de notas del usuario. 
-- GET [/notes/:noteId] - Obtiene información de una nota específica.
-- POST [/notes] - Crea una nueva nota. 
-- PUT [/notes/:noteId] - Modificar una nota existente.
-- PUT [/notes/:noteId/public] - Editar la privacidad de la nota. 
-- DELETE [/notes/:noteId/delete] - Elimina una nota. 
+- GET [/notes] - Retrieve the list of notes for the user.
+- GET [/notes/:noteId] - Retrieve information about a specific note.
+- POST [/notes] - Create a new note.
+- PUT [/notes/:noteId] - Modify an existing note.
+- PUT [/notes/:noteId/public] - Edit the privacy of the note.
+- DELETE [/notes/:noteId/delete] - Delete a note.
 
-# Categorias:
+# Categories:
 
-- POST [/categories] Crea una nueva categoria. 
-- GET [/categories] - Devuelve todas las categorias. 
-- PUT [/categories/:categoryId] - Editar una categoria existente. 
-- DELETE [/categories/:categoryId] - Eliminar una categoria existente. 
+- POST [/categories] - Create a new category.
+- GET [/categories] - Retrieve all categories.
+- PUT [/categories/:categoryId] - Edit an existing category.
+- DELETE [/categories/:categoryId] - Delete an existing category.
