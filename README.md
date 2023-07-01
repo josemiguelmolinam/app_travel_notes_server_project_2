@@ -1,7 +1,6 @@
 ###### App Notas de Texto ######
 
-
-Descripción del proyecto:
+Descripción del proyecto.
 
 - El proyecto consiste en desarrollar una API que permita a los usuarios crear y categorizar notas privadas de texto.
 - Los usuarios pueden registrarse, iniciar sesión y gestionar sus propias notas.
@@ -19,7 +18,7 @@ Descripción del proyecto:
 - createdAt
 - modifiedAt
 
-- Note:
+- Nota:
 
 - id
 - userId
@@ -28,10 +27,10 @@ Descripción del proyecto:
 - categoriaId
 - createdAt
 
-- Category:
+- Categoria:
 
 - id
-- name
+- nombre
 - createdAt
 
 ### Endpoints
@@ -48,13 +47,10 @@ Descripción del proyecto:
 - GET [/notes/:noteId] - Obtiene información de una nota específica.
 - POST [/notes] - Crea una nueva nota. 
 - PUT [/notes/:noteId] - Modificar una nota existente.
-
-- # Opcional notas:
-
 - PUT [/notes/:noteId/public] - Editar la privacidad de la nota. 
 - DELETE [/notes/:noteId/delete] - Elimina una nota. 
 
-# Opcional categorias:
+# Categorias:
 
 - POST [/categories] Crea una nueva categoria. 
 - GET [/categories] - Devuelve todas las categorias. 
