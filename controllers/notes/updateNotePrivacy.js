@@ -5,7 +5,6 @@ const updateNotePrivacy = async (req, res, next) => {
     const { noteId } = req.params;
     const { isPublic } = req.body;
 
-    // Lógica para verificar y validar los datos de entrada.
 
     // Llama a la función de la consulta para actualizar la privacidad de la nota en la base de datos.
     await updateNotePrivacyQuery(noteId, isPublic);

@@ -105,6 +105,7 @@ app.delete('/categories/:categoryId', authUser, userExists, deleteCategory);
 // Modificar la privacidad de una nota.
 app.put('/public/:noteId', authUser, userExists, updateNotePrivacy);
 
+
 /*#################################
   ####### Middleware error#########
   #################################*/

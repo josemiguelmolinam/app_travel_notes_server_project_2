@@ -9,8 +9,7 @@ const selectUserByEmailQuery = async (email) => {
     connection = await getDB();
 
     const [users] = await connection.query(
-      `SELECT id, password  FROM users WHERE email = ?`, // se retirò el rol
-      [email]
+      `SELECT id, password  FROM users WHERE email = ?`,
     );
 
     if (users.length < 1) {

@@ -13,6 +13,7 @@ const updateNotePrivacyQuery = async (noteId, isPublic) => {
 
     //Si se realizó la actualización correctamente, no es necesario retornar nada.
   } catch (error) {
+    
     // Manejo de errores.
     console.error(error);
     throw new Error('Error al actualizar la privacidad de la nota');

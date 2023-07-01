@@ -22,7 +22,7 @@ const generateError = (msg, code) => {
  */
 
 // Función para guardar una foto en el servidor y redimensionarla.
-const savePhoto = async (img, width) => {
+    const savePhoto = async (img, width) => {
   try {
     // Ruta absoluta al directorio de subida de archivos.
     const uploadsPath = path.join(__dirname, process.env.UPLOADS_DIR);

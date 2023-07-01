@@ -1,6 +1,7 @@
-### App de Notas de texto.
+###### App Notas de Texto ######
 
-Descripción del proyecto.
+
+Descripción del proyecto:
 
 - El proyecto consiste en desarrollar una API que permita a los usuarios crear y categorizar notas privadas de texto.
 - Los usuarios pueden registrarse, iniciar sesión y gestionar sus propias notas.
@@ -18,7 +19,7 @@ Descripción del proyecto.
 - createdAt
 - modifiedAt
 
-- Nota:
+- Note:
 
 - id
 - userId
@@ -27,35 +28,35 @@ Descripción del proyecto.
 - categoriaId
 - createdAt
 
-- Categoria:
+- Category:
 
 - id
-- nombre
+- name
 - createdAt
 
 ### Endpoints
 
 # Usuarios:
 
-- POST [/users/register] - Registro de un nuevo usuario. ✅
-- POST [/users/login] - Permite logear un usuario. ✅
-- GET [/users] - Devuelve información del usuario del token. ✅
+- POST [/users/register] - Registro de un nuevo usuario. 
+- POST [/users/login] - Permite logear un usuario. 
+- GET [/users] - Devuelve información del usuario del token. 
 
 - # Notas:
 
-- GET [/notes] - Obtiene el listado de notas del usuario. ✅
-- GET [/notes/:noteId] - Obtiene información de una nota específica.✅
-- POST [/notes] - Crea una nueva nota. ✅
-- PUT [/notes/:noteId] - Modificar una nota existente.✅
+- GET [/notes] - Obtiene el listado de notas del usuario. 
+- GET [/notes/:noteId] - Obtiene información de una nota específica.
+- POST [/notes] - Crea una nueva nota. 
+- PUT [/notes/:noteId] - Modificar una nota existente.
 
 - # Opcional notas:
 
-- PUT [/notes/:noteId/public] - Editar la privacidad de la nota. ✅
-- DELETE [/notes/:noteId/delete] - Elimina una nota. ✅
+- PUT [/notes/:noteId/public] - Editar la privacidad de la nota. 
+- DELETE [/notes/:noteId/delete] - Elimina una nota. 
 
 # Opcional categorias:
 
-- POST [/categories] Crea una nueva categoria. ✅
-- GET [/categories] - Devuelve todas las categorias. ✅
-- PUT [/categories/:categoryId] - Editar una categoria existente. ✅
-- DELETE [/categories/:categoryId] - Eliminar una categoria existente. ✅
+- POST [/categories] Crea una nueva categoria. 
+- GET [/categories] - Devuelve todas las categorias. 
+- PUT [/categories/:categoryId] - Editar una categoria existente. 
+- DELETE [/categories/:categoryId] - Eliminar una categoria existente. 
